@@ -69,6 +69,11 @@
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
   <ItemGroup>
     <Folder Include="Properties" />
+    <Folder Include="Assemblies\" />
+    <Folder Include="Functions" />
+    <Folder Include="Stored Procedures" />
+    <Folder Include="Tables" />
+    <Folder Include="Views" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -100,6 +105,14 @@
       <SqlPermissionSet>UNSAFE</SqlPermissionSet>
     </Reference>
     <Reference Include="System.Runtime.DurableInstancing" />
+    <Reference Include="EVE_SDE_tools">
+      <HintPath>Assemblies\EVE_SDE_tools.dll</HintPath>
+      <SqlAssemblyName>EVE_SDE_tools</SqlAssemblyName>
+      <IsModelAware>True</IsModelAware>
+      <GenerateSqlClrDdl>False</GenerateSqlClrDdl>
+      <SqlOwnerName>dbo</SqlOwnerName>
+      <SqlPermissionSet>EXTERNAL_ACCESS</SqlPermissionSet>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdjustedPrices.cs" />
@@ -108,11 +121,107 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="EVE SDE tools.publish.xml" />
+    <None Include="Assemblies\EVE_SDE_tools.dll" />
   </ItemGroup>
   <ItemGroup>
     <SqlCmdVariable Include="DataDump">
       <DefaultValue>EveStaticData</DefaultValue>
       <Value>$(SqlCmdVar__1)</Value>
     </SqlCmdVariable>
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="Functions\dbo.invAdjustedPrices.sql" />
+    <Build Include="Functions\dbo.invBlueprintHierachy.sql" />
+    <Build Include="Functions\dbo.invMarketHierachy.sql" />
+    <Build Include="Functions\dbo.ItemName.sql" />
+    <Build Include="Functions\dbo.mapCostIndex.sql" />
+    <Build Include="Functions\dbo.mapPrices.sql" />
+    <Build Include="Functions\dbo.ramDatacores.sql" />
+    <Build Include="Functions\dbo.ramInventoryRequirements.sql" />
+    <Build Include="Stored Procedures\dbo.MarginalBuildPrice.sql" />
+    <Build Include="Stored Procedures\dbo.RaceIDFromInvention.sql" />
+    <Build Include="Tables\dbo.agtAgents.sql" />
+    <Build Include="Tables\dbo.agtAgentTypes.sql" />
+    <Build Include="Tables\dbo.agtResearchAgents.sql" />
+    <Build Include="Tables\dbo.chrAncestries.sql" />
+    <Build Include="Tables\dbo.chrAttributes.sql" />
+    <Build Include="Tables\dbo.chrBloodlines.sql" />
+    <Build Include="Tables\dbo.chrFactions.sql" />
+    <Build Include="Tables\dbo.chrRaces.sql" />
+    <Build Include="Tables\dbo.crpActivities.sql" />
+    <Build Include="Tables\dbo.crpNPCCorporationDivisions.sql" />
+    <Build Include="Tables\dbo.crpNPCCorporationResearchFields.sql" />
+    <Build Include="Tables\dbo.crpNPCCorporations.sql" />
+    <Build Include="Tables\dbo.crpNPCCorporationTrades.sql" />
+    <Build Include="Tables\dbo.crpNPCDivisions.sql" />
+    <Build Include="Tables\dbo.crtCertificates.sql" />
+    <Build Include="Tables\dbo.crtClasses.sql" />
+    <Build Include="Tables\dbo.crtRecommendations.sql" />
+    <Build Include="Tables\dbo.crtRelationships.sql" />
+    <Build Include="Tables\dbo.dgmAttributeCategories.sql" />
+    <Build Include="Tables\dbo.dgmAttributeTypes.sql" />
+    <Build Include="Tables\dbo.dgmEffects.sql" />
+    <Build Include="Tables\dbo.dgmExpressions.sql" />
+    <Build Include="Tables\dbo.dgmMasteries.sql" />
+    <Build Include="Tables\dbo.dgmTraits.sql" />
+    <Build Include="Tables\dbo.dgmTypeAttributes.sql" />
+    <Build Include="Tables\dbo.dgmTypeEffects.sql" />
+    <Build Include="Tables\dbo.dgmTypeMasteries.sql" />
+    <Build Include="Tables\dbo.dgmTypeTraits.sql" />
+    <Build Include="Tables\dbo.eveGraphics.sql" />
+    <Build Include="Tables\dbo.eveIcons.sql" />
+    <Build Include="Tables\dbo.eveUnits.sql" />
+    <Build Include="Tables\dbo.invBlueprintTypes.sql" />
+    <Build Include="Tables\dbo.invCategories.sql" />
+    <Build Include="Tables\dbo.invContrabandTypes.sql" />
+    <Build Include="Tables\dbo.invControlTowerResourcePurposes.sql" />
+    <Build Include="Tables\dbo.invControlTowerResources.sql" />
+    <Build Include="Tables\dbo.invFlags.sql" />
+    <Build Include="Tables\dbo.invGroups.sql" />
+    <Build Include="Tables\dbo.invItems.sql" />
+    <Build Include="Tables\dbo.invMarketGroups.sql" />
+    <Build Include="Tables\dbo.invMetaGroups.sql" />
+    <Build Include="Tables\dbo.invMetaTypes.sql" />
+    <Build Include="Tables\dbo.invNames.sql" />
+    <Build Include="Tables\dbo.invPositions.sql" />
+    <Build Include="Tables\dbo.invTypeMaterials.sql" />
+    <Build Include="Tables\dbo.invTypeReactions.sql" />
+    <Build Include="Tables\dbo.invTypes.sql" />
+    <Build Include="Tables\dbo.invUniqueNames.sql" />
+    <Build Include="Tables\dbo.mapCelestialStatistics.sql" />
+    <Build Include="Tables\dbo.mapConstellationJumps.sql" />
+    <Build Include="Tables\dbo.mapConstellations.sql" />
+    <Build Include="Tables\dbo.mapDenormalize.sql" />
+    <Build Include="Tables\dbo.mapJumps.sql" />
+    <Build Include="Tables\dbo.mapLandmarks.sql" />
+    <Build Include="Tables\dbo.mapLocationScenes.sql" />
+    <Build Include="Tables\dbo.mapLocationWormholeClasses.sql" />
+    <Build Include="Tables\dbo.mapRegionJumps.sql" />
+    <Build Include="Tables\dbo.mapRegions.sql" />
+    <Build Include="Tables\dbo.mapSolarSystemJumps.sql" />
+    <Build Include="Tables\dbo.mapSolarSystems.sql" />
+    <Build Include="Tables\dbo.mapUniverse.sql" />
+    <Build Include="Tables\dbo.planetSchematics.sql" />
+    <Build Include="Tables\dbo.planetSchematicsPinMap.sql" />
+    <Build Include="Tables\dbo.planetSchematicsTypeMap.sql" />
+    <Build Include="Tables\dbo.ramActivities.sql" />
+    <Build Include="Tables\dbo.ramAssemblyLineStations.sql" />
+    <Build Include="Tables\dbo.ramAssemblyLineTypeDetailPerCategory.sql" />
+    <Build Include="Tables\dbo.ramAssemblyLineTypeDetailPerGroup.sql" />
+    <Build Include="Tables\dbo.ramAssemblyLineTypes.sql" />
+    <Build Include="Tables\dbo.ramInstallationTypeContents.sql" />
+    <Build Include="Tables\dbo.ramTypeRequirements.sql" />
+    <Build Include="Tables\dbo.staOperations.sql" />
+    <Build Include="Tables\dbo.staOperationServices.sql" />
+    <Build Include="Tables\dbo.staServices.sql" />
+    <Build Include="Tables\dbo.staStations.sql" />
+    <Build Include="Tables\dbo.staStationTypes.sql" />
+    <Build Include="Tables\dbo.translationTables.sql" />
+    <Build Include="Tables\dbo.trnTranslationColumns.sql" />
+    <Build Include="Tables\dbo.trnTranslationLanguages.sql" />
+    <Build Include="Tables\dbo.trnTranslations.sql" />
+    <Build Include="Tables\dbo.warCombatZones.sql" />
+    <Build Include="Tables\dbo.warCombatZoneSystems.sql" />
+    <Build Include="Views\dbo.ramDecryptors.sql" />
   </ItemGroup>
 </Project>
